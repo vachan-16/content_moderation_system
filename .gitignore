@@ -1,0 +1,35 @@
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ignore virtual environment
+venv/
+ENV/
+env/
+
+# Ignore model files
+*.pkl
+
+# Ignore dataset
+*.csv
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE files
+.vscode/
+.idea/
+
+# Ignore log files
+*.log
+
+# Ignore compiled C files
+*.so
+
+# Ignore streamlit artifacts (if ever used again)
+.streamlit/
+
+# Ignore environment/config files
+.env

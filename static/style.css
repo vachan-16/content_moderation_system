@@ -1,0 +1,88 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #f9f9f9, #e0f7fa);
+    color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border-radius: 15px;
+}
+
+h1 {
+    text-align: center;
+    color: #00796b;
+    margin-bottom: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+label, select, textarea, input[type="file"], button {
+    width: 80%;
+    max-width: 500px;
+}
+
+textarea {
+    height: 120px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+select, input[type="file"] {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #00796b;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background-color: #004d40;
+}
+
+.result {
+    padding: 15px;
+    background-color: #e0f2f1;
+    border-left: 5px solid #00796b;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    font-size: 18px;  /* 👈 Add this line */
+    font-weight: 500; /* Optional: makes it look more solid */
+}
+
+
+.result-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+
+.hidden {
+    display: none;
+}

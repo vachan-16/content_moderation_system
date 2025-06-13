@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Content Moderation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Content Moderation System</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <label>Select type:</label>
+        <select name="type" onchange="toggleInputs(this.value)">
+            <option value="text">Text</option>
+            <option value="image">Image</option>
+            <option value="video">Video</option>
+        </select>
+
+        <div id="text_input_div">
+            <textarea name="text_input" placeholder="Enter text here..."></textarea>
+        </div>
+
+        <div id="image_input_div" style="display:none;">
+            <input type="file" name="image_file" accept="image/*" />
+        </div>
+
+        <div id="video_input_div" style="display:none;">
+            <input type="file" name="video_file" accept="video/*" />
+        </div>
+
+        <button type="submit">Moderate</button>
+    </form>
+
+    {% if result %}
+    <div class="result-wrapper">
+        <div class="result">
+            <h2>Result:</h2>
+            <pre>{{ result }}</pre>
+        </div>
+    </div>
+    {% endif %}
+
+
+    <script>
+        function toggleInputs(type) {
+            document.getElementById('text_input_div').style.display = (type === 'text') ? 'block' : 'none';
+            document.getElementById('image_input_div').style.display = (type === 'image') ? 'block' : 'none';
+            document.getElementById('video_input_div').style.display = (type === 'video') ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
