@@ -8,11 +8,6 @@ venv/
 ENV/
 env/
 
-# Ignore model files
-*.pkl
-
-# Ignore dataset
-*.csv
 
 # Ignore system files
 .DS_Store

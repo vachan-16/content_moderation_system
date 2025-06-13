@@ -1,5 +1,7 @@
 import cv2
 import os
+from io import BytesIO
+import tempfile
 import numpy as np
 from collections import Counter
 
@@ -127,10 +129,13 @@ class VideoClassifier:
             return 'safe', analysis  # Default to safe if analysis fails
 
 
-def moderate_video(uploaded_image):
-    classifier = VideoClassifier()
-    
+def moderate_video(video_io):
+    # Save uploaded BytesIO to a temporary file (since cv2.VideoCapture needs a filepath)
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".mp4") as temp_video:
+        temp_video.write(video_io.read())
+        temp_video_path = temp_video.name
 
-    result, analysis = classifier.classify_video(uploaded_image)
+    classifier = VideoClassifier()
+    result, analysis = classifier.classify_video(temp_video_path)
+    
     return f"Classification: {result}"
-    # print(f"Analysis: {analysis}")
