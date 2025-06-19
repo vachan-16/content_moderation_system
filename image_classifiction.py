@@ -17,13 +17,20 @@ class ImageClassifier:
         self.blood_threshold = 5   # % of image
         self.dark_threshold = 30   # % of image
         
-    def analyze_image(self, image_path):
-        """Analyze image content and return classification"""
+
+    def analyze_image(self, image_input):
         try:
-            # Read and convert image
-            img = cv2.imread(image_path)
+            # Accept both file path and numpy array
+            if isinstance(image_input, str):
+                img = cv2.imread(image_input)
+            elif isinstance(image_input, np.ndarray):
+                img = image_input
+            else:
+                return "safe", {"error": "Unsupported image input type"}
+
             if img is None:
                 return "safe", {"error": "Could not read image"}
+
                 
             hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
             height, width = img.shape[:2]
@@ -68,25 +75,20 @@ class ImageClassifier:
                 return "safe", analysis
                 
         except Exception as e:
-            return "safe", {"error": str(e)}
+            return "safer", {"error": str(e)}
 
 from PIL import Image
 from io import BytesIO
-# adjust if needed
+
 
 def moderate_image(image_io):
-    image = Image.open(image_io)
-    classifier = ImageClassifier()
-    result, analysis = classifier.analyze_image(image)
+    image = Image.open(image_io).convert("RGB")
+    img_array = np.array(image)
+    img_array = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
 
-    # print(f"Classification: {result}")
-    # print("Analysis Details:")
-    # for k, v in analysis.items():
-    #     print(f"{k}: {v}")
+    classifier = ImageClassifier()
+    result, analysis = classifier.analyze_image(img_array)
 
     return result
 
 
-# Example usage
-if __name__ == "__main__":
-    result = moderate_image("DSC_2312.jpg")
